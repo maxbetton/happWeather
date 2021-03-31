@@ -11,17 +11,12 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var context
 
-    @StateObject var cityVM = CityViewModel()
+    @StateObject var cityVM: CityViewModel
     
-    @ObservedObject var viewModel: WeeklyWeatherViewModel
-
-    init(viewModel: WeeklyWeatherViewModel) {
-      self.viewModel = viewModel
-    }
     
     //Read data
     @FetchRequest(entity: City.entity(),
-                  sortDescriptors: [NSSortDescriptor(key: "cityName", ascending: true)])
+                  sortDescriptors: [NSSortDescriptor(key: "city", ascending: true)])
     var cities: FetchedResults<City>
 
     
@@ -31,7 +26,7 @@ struct ContentView: View {
                 Section {
                     ForEach(cities) { city in
                         NavigationLink(
-                            destination: EditView(city: city, cityVM: cityVM),
+                            destination: EditView(city: city, viewModel: cityVM),
                             label: {
                                 ListCities(city: city)
                             })
@@ -49,7 +44,7 @@ struct ContentView: View {
             }
             )
             .sheet(isPresented: self.$cityVM.isAddPresented) {
-                AddView(cityVM: cityVM)
+                AddView(viewModel: cityVM)
             }
         }
     }

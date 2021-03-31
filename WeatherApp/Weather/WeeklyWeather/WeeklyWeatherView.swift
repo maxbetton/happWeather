@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct WeeklyWeatherView: View {
-  @ObservedObject var viewModel: WeeklyWeatherViewModel
+  @ObservedObject var viewModel: CityViewModel
 
-  init(viewModel: WeeklyWeatherViewModel) {
+  init(viewModel: CityViewModel) {
     self.viewModel = viewModel
   }
   
@@ -22,7 +22,7 @@ struct WeeklyWeatherView: View {
         if viewModel.dataSource.isEmpty {
           emptySection
         } else {
-          cityHourlyWeatherSection
+          // cityHourlyWeatherSection
           forecastSection
         }
       }
@@ -45,18 +45,18 @@ private extension WeeklyWeatherView {
     }
   }
 
-  var cityHourlyWeatherSection: some View {
-    Section {
-      NavigationLink(destination: viewModel.currentWeatherView) {
-        VStack(alignment: .leading) {
-          Text(viewModel.city)
-          Text("Weather today")
-            .font(.caption)
-            .foregroundColor(.gray)
-        }
-      }
-    }
-  }
+//  var cityHourlyWeatherSection: some View {
+//    Section {
+//      NavigationLink(destination: viewModel.currentWeatherView) {
+//        VStack(alignment: .leading) {
+//          Text(viewModel.city)
+//          Text("Weather today")
+//            .font(.caption)
+//            .foregroundColor(.gray)
+//        }
+//      }
+//    }
+//  }
 
   var emptySection: some View {
     Section {

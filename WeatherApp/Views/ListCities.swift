@@ -13,7 +13,7 @@ struct ListCities: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("\(self.city.cityName ?? self.placeholder)")
+                Text("\(self.city.city ?? self.placeholder)")
                     .bold()
             }
         }

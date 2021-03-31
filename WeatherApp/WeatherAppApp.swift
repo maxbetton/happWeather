@@ -14,12 +14,12 @@ struct WeatherAppApp: App {
     var body: some Scene {
         
         let fetcher = WeatherFetcher()
-        let viewModel = WeeklyWeatherViewModel(weatherFetcher: fetcher)
-        let weeklyView = WeeklyWeatherView(viewModel: viewModel)
+        let viewModel = CityViewModel(weatherFetcher: fetcher)
+        //let weeklyView = WeeklyWeatherView(viewModel: viewModel)
         
         WindowGroup {
             //WeeklyWeatherView(viewModel: viewModel)
-            ContentView(viewModel: viewModel)
+            ContentView(cityVM: viewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

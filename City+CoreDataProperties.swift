@@ -2,7 +2,7 @@
 //  City+CoreDataProperties.swift
 //  WeatherApp
 //
-//  Created by Maxime Betton on 17/03/2021.
+//  Created by Maxime Betton on 31/03/2021.
 //
 //
 
@@ -16,7 +16,7 @@ extension City {
         return NSFetchRequest<City>(entityName: "City")
     }
 
-    @NSManaged public var cityName: String?
+    @NSManaged public var city: String?
     @NSManaged public var id: UUID?
 
 }
