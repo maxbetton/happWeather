@@ -1,5 +1,5 @@
 //
-//  EditView.swift
+//  CityView.swift
 //  WeatherApp
 //
 //  Created by Maxime Betton on 17/03/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditView: View {
+struct CityView: View {
     var city: City
 
     @ObservedObject var viewModel: CityViewModel
@@ -38,7 +38,7 @@ struct EditView: View {
     }
 }
 
-private extension EditView {
+private extension CityView {
   var searchField: some View {
     HStack(alignment: .center) {
       TextField("e.g. Cupertino", text: $viewModel.city)

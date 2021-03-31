@@ -33,7 +33,7 @@
 		154ADB3526023F7500E7C764 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154ADB2526023F7500E7C764 /* Responses.swift */; };
 		154ADB3626023F7500E7C764 /* WeatherFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154ADB2626023F7500E7C764 /* WeatherFetcher.swift */; };
 		154ADB392602421600E7C764 /* ListCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154ADB382602421600E7C764 /* ListCities.swift */; };
-		154ADB3C260242E300E7C764 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154ADB3B260242E300E7C764 /* EditView.swift */; };
+		154ADB3C260242E300E7C764 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154ADB3B260242E300E7C764 /* CityView.swift */; };
 		154ADB3F260243FE00E7C764 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154ADB3E260243FE00E7C764 /* AddView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,7 @@
 		154ADB2526023F7500E7C764 /* Responses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
 		154ADB2626023F7500E7C764 /* WeatherFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherFetcher.swift; sourceTree = "<group>"; };
 		154ADB382602421600E7C764 /* ListCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCities.swift; sourceTree = "<group>"; };
-		154ADB3B260242E300E7C764 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		154ADB3B260242E300E7C764 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		154ADB3E260243FE00E7C764 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,7 +138,7 @@
 			children = (
 				154ADADE26023CD800E7C764 /* ContentView.swift */,
 				154ADB382602421600E7C764 /* ListCities.swift */,
-				154ADB3B260242E300E7C764 /* EditView.swift */,
+				154ADB3B260242E300E7C764 /* CityView.swift */,
 				154ADB3E260243FE00E7C764 /* AddView.swift */,
 			);
 			path = Views;
@@ -308,7 +308,7 @@
 			files = (
 				154ADB3F260243FE00E7C764 /* AddView.swift in Sources */,
 				154ADB2F26023F7500E7C764 /* DailyWeatherRowViewModel.swift in Sources */,
-				154ADB3C260242E300E7C764 /* EditView.swift in Sources */,
+				154ADB3C260242E300E7C764 /* CityView.swift in Sources */,
 				154ADAE926023CD900E7C764 /* WeatherApp.xcdatamodeld in Sources */,
 				154ADB3626023F7500E7C764 /* WeatherFetcher.swift in Sources */,
 				154ADAE626023CD900E7C764 /* Persistence.swift in Sources */,

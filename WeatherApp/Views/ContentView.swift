@@ -26,7 +26,7 @@ struct ContentView: View {
                 Section {
                     ForEach(cities) { city in
                         NavigationLink(
-                            destination: EditView(city: city, viewModel: cityVM),
+                            destination: CityView(city: city, viewModel: cityVM),
                             label: {
                                 ListCities(city: city)
                             })
