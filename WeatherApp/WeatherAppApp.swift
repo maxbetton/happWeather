@@ -19,7 +19,7 @@ struct WeatherAppApp: App {
         
         WindowGroup {
             //WeeklyWeatherView(viewModel: viewModel)
-            ContentView(cityVM: viewModel)
+            ContentView(viewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
