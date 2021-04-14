@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DailyWeatherRow: View {
+struct DailyWeatherRowView: View {
   private let viewModel: DailyWeatherRowViewModel
   
   init(viewModel: DailyWeatherRowViewModel) {
