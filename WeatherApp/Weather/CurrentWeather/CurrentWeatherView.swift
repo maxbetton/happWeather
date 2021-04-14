@@ -17,7 +17,6 @@ struct CurrentWeatherView: View {
     var body: some View {
         GeometryReader { geo in
             Image("nunu")
-                
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.all)

@@ -15,47 +15,48 @@ class CityViewModel: ObservableObject {
     @Published var city: String = ""
     @Published var dataSource: [DailyWeatherRowViewModel] = []
     @Published var isAddPresented: Bool = false
-
-   // fileprivate let cityReq = NSFetchRequest<City>(entityName: "City")
+    @Published var title: String = ""
+    // fileprivate let cityReq = NSFetchRequest<City>(entityName: "City")
     private let weatherFetcher: WeatherFetchable
     private var disposables = Set<AnyCancellable>()
-
+    
     init(
-      weatherFetcher: WeatherFetchable,
-      scheduler: DispatchQueue = DispatchQueue(label: "WeatherViewModel")
+        weatherFetcher: WeatherFetchable,
+        scheduler: DispatchQueue = DispatchQueue(label: "WeatherViewModel")
     ) {
-      self.weatherFetcher = weatherFetcher
-      $city
-        .dropFirst(1)
-        .debounce(for: .seconds(0.5), scheduler: scheduler)
-        .sink(receiveValue: fetchWeather(forCity:))
-        .store(in: &disposables)
+        self.weatherFetcher = weatherFetcher
+        $city
+            .dropFirst(1)
+            .debounce(for: .seconds(0.5), scheduler: scheduler)
+            .sink(receiveValue: fetchWeather(forCity:))
+            .store(in: &disposables)
         print(disposables)
     }
-
+    
     
     func fetchWeather(forCity city: String) {
-      weatherFetcher.weeklyWeatherForecast(forCity: city)
-        .map { response in
-          response.list.map(DailyWeatherRowViewModel.init)
-        }
-        .map(Array.removeDuplicates)
-        .receive(on: DispatchQueue.main)
-        .sink(
-          receiveCompletion: { [weak self] value in
-            guard let self = self else { return }
-            switch value {
-            case .failure:
-              self.dataSource = []
-            case .finished:
-              break
+        weatherFetcher.weeklyWeatherForecast(forCity: city)
+            .map { response in
+                response.list.map(DailyWeatherRowViewModel.init)
             }
-          },
-          receiveValue: { [weak self] forecast in
-            guard let self = self else { return }
-            self.dataSource = forecast
-        })
-        .store(in: &disposables)
+            .map(Array.removeDuplicates)
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { [weak self] value in
+                    guard let self = self else { return }
+                    switch value {
+                    case .failure:
+                        self.dataSource = []
+                    case .finished:
+                        break
+                    }
+                },
+                receiveValue: { [weak self] forecast in
+                    guard let self = self else { return }
+                    self.dataSource = forecast
+                    self.title = self.dataSource[0].title
+                })
+            .store(in: &disposables)
         
     }
     
@@ -69,15 +70,15 @@ class CityViewModel: ObservableObject {
         newCity.city = self.city
         newCity.id = UUID()
         do {
-
+            
             // je sauvegarde ma ville
             try context.save()
             self.resetValues()
             //ferme la AddView
             self.isAddPresented.toggle()
             print(self.isAddPresented)
-
-
+            
+            
         } catch {
             print(error.localizedDescription)
         }
@@ -101,9 +102,9 @@ class CityViewModel: ObservableObject {
 
 extension CityViewModel {
     var currentWeatherView: some View {
-    return WeeklyWeatherBuilder.makeCurrentWeatherView(
-      withCity: city,
-      weatherFetcher: weatherFetcher
-    )
-  }
+        return WeeklyWeatherBuilder.makeCurrentWeatherView(
+            withCity: city,
+            weatherFetcher: weatherFetcher
+        )
+    }
 }

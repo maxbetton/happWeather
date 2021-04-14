@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct AddView: View {
     @Environment(\.managedObjectContext) var context
@@ -17,16 +18,16 @@ struct AddView: View {
     
     
     init(viewModel: CityViewModel) {
-      self.viewModel = viewModel
+        self.viewModel = viewModel
     }
     
     
-
+    
     func verify() -> Bool {
         var result: Bool = false
         for city in cities {
             if viewModel.city == city.city {
-                 result = false
+                result = false
                 break
             } else {
                 result = true
@@ -37,30 +38,39 @@ struct AddView: View {
     }
     
     var body: some View {
-        NavigationView {
-            Form {
-                //searchField
-                Section(header: Text("Ville")) {
-                    TextField("Paris", text: self.$viewModel.city)
-                }
-
-                Button(action: {
-                    self.viewModel.addCity(context: context)
-                }) {
-                    Text("Ajouter la ville")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }.disabled(!self.verify())
-                
-                if viewModel.dataSource.isEmpty {
-                  emptySection
-                } else {
-                   cityHourlyWeatherSection
-                  forecastSection
-                }
-              
-            }
-            .navigationBarTitle("Ajouter")
+        GeometryReader { geo in
             
+            VStack{
+                AnimatedImage(url: URL(string:"https://i.pinimg.com/originals/cd/25/45/cd25452763ef54225089858996d1b7ff.gif"))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .opacity(0.8)
+                    .overlay(
+                        Form {
+                            //searchField
+                            Section(header: Text("Ville")) {
+                                TextField("Paris", text: self.$viewModel.city)
+                            }
+                            
+                            Button(action: {
+                                self.viewModel.addCity(context: context)
+                            }) {
+                                Text("Ajouter la ville")
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                            
+                            if viewModel.dataSource.isEmpty {
+                                emptySection
+                            } else {
+                                cityHourlyWeatherSection
+                                forecastSection
+                            }
+                            
+                        })
+                    .navigationBarTitle("Ajouter")
+            }
         }
         .onAppear(perform: {
             viewModel.city = ""
@@ -69,9 +79,9 @@ struct AddView: View {
 }
 
 //struct AddView_Previews: PreviewProvider {
-    //static var previews: some View {
-    //    AddView()
-  //  }
+//static var previews: some View {
+//    AddView()
+//  }
 //}
 //private extension AddView {
 //    var searchField: some View {
@@ -82,35 +92,35 @@ struct AddView: View {
 //}
 
 private extension AddView {
-  var searchField: some View {
-    HStack(alignment: .center) {
-      TextField("e.g. Cupertino", text: $viewModel.city)
-    }
-  }
-
-  var forecastSection: some View {
-    Section {
-      ForEach(viewModel.dataSource, content: DailyWeatherRow.init(viewModel:))
-    }
-  }
-
-  var cityHourlyWeatherSection: some View {
-    Section {
-      NavigationLink(destination: viewModel.currentWeatherView) {
-        VStack(alignment: .leading) {
-          Text(viewModel.city)
-          Text("Weather today")
-            .font(.caption)
-            .foregroundColor(.gray)
+    var searchField: some View {
+        HStack(alignment: .center) {
+            TextField("e.g. Cupertino", text: $viewModel.city)
         }
-      }
     }
-  }
-
-  var emptySection: some View {
-    Section {
-      Text("No results")
-        .foregroundColor(.gray)
+    
+    var forecastSection: some View {
+        Section {
+            ForEach(viewModel.dataSource, content: DailyWeatherRow.init(viewModel:))
+        }
     }
-  }
+    
+    var cityHourlyWeatherSection: some View {
+        Section {
+            NavigationLink(destination: viewModel.currentWeatherView) {
+                VStack(alignment: .leading) {
+                    Text(viewModel.city)
+                    Text("Weather today")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+    }
+    
+    var emptySection: some View {
+        Section {
+            Text("No results")
+                .foregroundColor(.gray)
+        }
+    }
 }

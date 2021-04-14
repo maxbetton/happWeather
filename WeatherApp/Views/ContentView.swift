@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import SDWebImageSwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var context
@@ -26,14 +27,15 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
+            
             GeometryReader { geo in
-                Image("nunu")
-                    
+                
+                AnimatedImage(url: URL(string:"https://i.pinimg.com/originals/cd/25/45/cd25452763ef54225089858996d1b7ff.gif"))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: geo.size.width, height: geo.size.height)
-                    .opacity(0.5)
+                    .opacity(0.8)
                     .overlay(
                         List {
                             ForEach(cities) { city in
@@ -48,6 +50,7 @@ struct ContentView: View {
                             })
                             
                         }
+                        .opacity(0.7)
                         .listStyle(InsetGroupedListStyle())
                         .navigationBarItems(trailing:
                                                 Button(action: { self.cityVM.isAddPresented.toggle() }) {
