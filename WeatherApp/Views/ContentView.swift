@@ -35,7 +35,6 @@ struct ContentView: View {
                     .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: geo.size.width, height: geo.size.height)
-                    .opacity(0.8)
                     .overlay(
                         List {
                             ForEach(cities) { city in

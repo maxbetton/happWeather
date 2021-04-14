@@ -14,14 +14,11 @@ struct CityView: View {
     @ObservedObject var viewModel: CityViewModel
     @Environment(\.managedObjectContext) var context
     var placeholder: String = "unknown"
-    @State var image: String = ""
+    @State var image: String = "Clear"
     
     var body: some View {
         GeometryReader { geo in
             VStack{
-                
-                
-                
                 List {
                     if viewModel.dataSource.isEmpty {
                         Section {
@@ -32,26 +29,28 @@ struct CityView: View {
                         VStack{
                             NavigationLink(destination: viewModel.currentWeatherView) {
                                 VStack(alignment: .leading) {
+                                    Spacer()
                                     Text("Weather today")
                                         .bold()
                                         .font(.system(size: 25))
                                         .foregroundColor(.blue)
+                                    
+                                    
                                 }
                             }
                             Spacer()
                         }
                         VStack{
+                            Spacer()
                             ForEach(viewModel.dataSource ) { dailyWeatherVM in
                                 DailyWeatherRow(viewModel: dailyWeatherVM)
                             }
                         }
                         .onAppear{
-                            
                             image = viewModel.title
                         }
                     }
                 }
-                
                 .opacity(0.6)
                 .listStyle(InsetGroupedListStyle())
                 .background(Image(image)
@@ -60,6 +59,7 @@ struct CityView: View {
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: geo.size.width, height: geo.size.height)
                 )
+                
             }
             .navigationBarTitle("\(self.viewModel.city) ⛅️")
             .onAppear(perform: {

@@ -30,7 +30,7 @@ class CityViewModel: ObservableObject {
             .debounce(for: .seconds(0.5), scheduler: scheduler)
             .sink(receiveValue: fetchWeather(forCity:))
             .store(in: &disposables)
-        print(disposables)
+        
     }
     
     
@@ -76,7 +76,7 @@ class CityViewModel: ObservableObject {
             self.resetValues()
             //ferme la AddView
             self.isAddPresented.toggle()
-            print(self.isAddPresented)
+            
             
             
         } catch {
