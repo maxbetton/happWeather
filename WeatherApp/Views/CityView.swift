@@ -43,7 +43,7 @@ struct CityView: View {
                         VStack{
                             Spacer()
                             ForEach(viewModel.dataSource ) { dailyWeatherVM in
-                                DailyWeatherRow(viewModel: dailyWeatherVM)
+                                DailyWeatherRowView(viewModel: dailyWeatherVM)
                             }
                         }
                         .onAppear{

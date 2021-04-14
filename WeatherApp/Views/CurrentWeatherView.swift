@@ -43,7 +43,7 @@ private extension CurrentWeatherView {
     }
     
     func details(for viewModel: CurrentWeatherRowViewModel) -> some View {
-        CurrentWeatherRow(viewModel: viewModel)
+        CurrentWeatherRowView(viewModel: viewModel)
         
     }
     

@@ -98,7 +98,7 @@ private extension AddView {
     
     var forecastSection: some View {
         Section {
-            ForEach(viewModel.dataSource, content: DailyWeatherRow.init(viewModel:))
+            ForEach(viewModel.dataSource, content: DailyWeatherRowView.init(viewModel:))
         }
     }
     
