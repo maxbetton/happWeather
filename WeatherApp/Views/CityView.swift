@@ -33,9 +33,7 @@ struct CityView: View {
                                     Text("Weather today")
                                         .bold()
                                         .font(.system(size: 25))
-                                        .foregroundColor(.blue)
-                                    
-                                    
+                                        .foregroundColor(.blue) 
                                 }
                             }
                             Spacer()
@@ -59,14 +57,12 @@ struct CityView: View {
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: geo.size.width, height: geo.size.height)
                 )
-                
             }
             .navigationBarTitle("\(self.viewModel.city) ⛅️")
             .onAppear(perform: {
                 viewModel.dataSource.removeAll()
                 viewModel.city = city.city ?? ""
             })
-            .animation(.easeIn)
         }
     }
 }
